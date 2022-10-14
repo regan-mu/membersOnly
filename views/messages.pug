@@ -1,0 +1,27 @@
+extends layout
+block content
+    section.all-messages.mt-4
+        if currentUser
+            .create 
+                a(href="/anonymous/message/create" class="btn btn-lg btn-primary") Create message
+                .user-name
+                    if !currentUser.status
+                        a(href="/anonymous/member/join-club" class="btn btn-secondary") Join Club
+                    img(src="/images/incognito.png" alt="")
+                    p #{currentUser.fullname}
+        if messages 
+            for msg in messages 
+                .message
+                    img(src=gravatar alt="")
+                    .message-details 
+                        h3 #{msg.title}
+                        p #{msg.body}
+                        .actions 
+                            if currentUser.status || currentUser.admin
+                                p Posted by: #{msg.postedBy.f_name}
+                                p Date posted: #{msg.formattedDate}
+                            if currentUser.admin
+                                a(href=`/anonymous/message/${msg._id}/delete` class="text-danger") Delete
+        else 
+            .no-msgs 
+                p No mesages posted yet.

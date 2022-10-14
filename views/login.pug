@@ -1,0 +1,23 @@
+extends formsLayout 
+block forms
+    h3=title
+    if messages
+        .danger.p-1
+            for msg in messages 
+                p(class="text-danger") #{msg}
+    form(method="post" class="pt-3 pb-3" action="/anonymous/login-hander")
+        label(for="email") Email 
+        .input-group.mb-1
+            input(type="email" class="form-control" id="email" name="username" required)
+        label(for="password") Password 
+        .input-group
+            input(type="password" class="form-control" id="password" name="password" required)
+        button(type="submit" class="btn btn-primary mt-2") Login
+    .login 
+        p Don't have an account? 
+            a(href="/anonymous/signup") Signup
+    if errors
+        ul
+            for err in errors 
+                li.text-danger #{err.msg}
+            

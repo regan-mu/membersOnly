@@ -1,0 +1,22 @@
+extends formsLayout 
+block forms
+    h3=title
+    form(method="post" class="pt-3 pb-3")
+        label(for="title") Message Title
+        .input-group.mb-1
+            input(
+                type="text" 
+                class="form-control" 
+                id="title" 
+                name="title" 
+                required
+                value=message ? message.title: ""
+            )
+        label(for="text") Message Body
+        .input-group
+            textarea(type="text" class="form-control" id="text" name="text" required) #{message ? message.text: ""}
+        button(type="submit" class="btn btn-primary mt-2") Save
+    if errors
+        ul
+            for err in errors 
+                li.text-danger #{err.msg}

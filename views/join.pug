@@ -1,0 +1,10 @@
+extends formsLayout 
+block forms
+    h3=title
+    form(method="post" class="pt-3 pb-3")
+        label(for="code") Enter secret code to join inner circle 
+        .input-group.mb-1
+            input(type="text" class="form-control" id="code" name="code" required)
+        button(type="submit" class="btn btn-warning mt-2") Join
+
+            

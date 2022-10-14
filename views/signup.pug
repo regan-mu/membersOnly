@@ -1,0 +1,28 @@
+extends formsLayout 
+block forms
+    h3=title
+    form(method="post" class="pt-3 pb-3")
+        label(for="f_name") First Name
+        .input-group.mb-1
+            input(type="text" class="form-control" id="f_name" name="f_name" required)
+        label(for="l_name") Last Name 
+        .input-group.mb-1
+            input(type="text" class="form-control" id="l_name" name="l_name" required)
+        label(for="email") Email 
+        .input-group.mb-1
+            input(type="email" class="form-control" id="email" name="email" required)
+        label(for="password") Password 
+        .input-group.mb-1
+            input(type="password" class="form-control" id="password" name="password" required)
+        label(for="confirm_password") Confirm Password 
+        .input-group 
+            input(type="password" class="form-control" id="confirm_password" name="confirm_password" required)
+        button(type="submit" class="btn btn-primary mt-2") Signup
+    .login 
+        p Already have an account? 
+            a(href="/anonymous/login") Login
+    if errors
+        ul
+            for err in errors 
+                li.text-danger #{err.msg}
+            
